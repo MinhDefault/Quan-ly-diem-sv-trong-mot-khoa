@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/staticFiles/main.css' />
+    <title>Home</title>
+</head>
+<body>
+    <header class='header'>
+        <ul>
+            <li class='item_header'><a href="{{ url_for('home') }}">Trang chủ</a></li>
+            <li class='item_header'><a href="{{ url_for('quan_ly_sv')}}">Danh sách sinh viên</a></li>
+            <li class='item_header'><a href="{{ url_for('mon_hoc')}}">Môn học</a></li>
+            <li class='item_header'><a href="{{ url_for('danh_sach_giang_vien')}}">Thông tin giảng viên</a></li>
+        </ul>
+    </header>  
+    <h1 style="text-align: center;">Danh điểm môn học {{mon_hoc}} </h1>
+            <table border="1" style="display:flex ;justify-content: center;" >
+            <tr>
+                <th>Họ và tên</th>
+                <th>Khoa</th>
+                <th>Khóa</th>
+                <th>Điểm A</th>
+                <th>Điểm B</th>
+                <th>Điểm C</th>
+                <th>Sửa điểm</th>
+            </tr>
+            {% for mh in results %}
+            <tr>
+                <th>{{mh.ho_lot}} {{mh.ten_den}}</th>
+                <th>{{mh.faculty}}</th>
+                <th>{{mh.khoa}}</th>
+                <th>{{mh.diem_A}}</th>
+                <th>{{mh.diem_B}}</th>
+                <th>{{mh.diem_B}}</th>
+                <th>Sửa</th>
+            </tr>
+            {% endfor %}
+        </table>
+
+
+    <h1 style="text-align: center;">Thêm điểm sách sinh viên</h1>
+    <form style="text-align: center;" action="{{ url_for('them_ds_sv') }}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="excelFile" accept=".xlsx, .xls">
+        <input type="submit" value="Upload">
+    </form>
+    <footer class='footer'>
+        <div class='grid_5_column'>      
+            <div class='column_link-footer'>
+                <strong class='column_link-footer-text'>Trợ giúp</strong>
+                <ul>
+                    <li><a href='https://humg.edu.vn/gioi-thieu/pages/thu-ngo-cua-hieu-truong.aspx?ItemID=6955'>Hỏi đáp</a></li>
+                    <li><a href='https://humg.edu.vn/gioi-thieu/pages/thu-ngo-cua-hieu-truong.aspx?ItemID=6955'>Liên hệ</a></li>
+                    <li><a href='https://humg.edu.vn/gioi-thieu/pages/thu-ngo-cua-hieu-truong.aspx?ItemID=6955'>Tin tức</a></li>
+                </ul>
+            </div>
+            <div class='column_link-footer'>
+                <strong class='column_link-footer-text'>Thông tin</strong>
+                <ul>
+                    <li><a href='https://humg.edu.vn/gioi-thieu/pages/thu-ngo-cua-hieu-truong.aspx?ItemID=6955'>Điều khoản sử dụng</a></li>
+                    <li><a href='https://humg.edu.vn/gioi-thieu/pages/thu-ngo-cua-hieu-truong.aspx?ItemID=6955'>Chính sách riêng tư</a></li>
+                    <li><a href='https://humg.edu.vn/gioi-thieu/pages/thu-ngo-cua-hieu-truong.aspx?ItemID=6955'>Kiếu nại bản quyền</a></li>
+                    <i class='column_link-footer-text'> <b>Web quản lý điểm sinh viên</b> </i>
+                </ul>
+            </div>
+</body>
+</html>
